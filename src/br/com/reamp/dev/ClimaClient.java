@@ -41,27 +41,19 @@ public class ClimaClient {
 			  System.out.println("------------------------------------"); 
 			  System.out.println("Cidade: " +cidade); 
 			  System.out.println("Pais: " +country);
-			  System.out.println("--Previsão para a próximos dias: --");
+			  System.out.println("--Próximas previsões para esta cidade: --");
 			  System.out.println();
 		
 			 
-		  for (int i=0; i < 8; i++) {
+		  for (int i=0; i < arrLista.length(); i++) {
 
 				//RECUPERA PREVISÕES/DIA
 				JSONObject f = arrLista.getJSONObject(i);
 				
-				int datas = f.getInt("dt");	
+				 Object datas = f.get("dt_txt");	
 				
-				//FORMATA DATAS
-				Calendar dt = Calendar.getInstance();
-				dt.setTime( new Date());
-				dt.add(Calendar.DAY_OF_MONTH, i);	
-				Date data = dt.getTime();
 				
-				SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy"); 
-				String formattedDate = sdf.format(data);
-				
-				System.out.println("Data: " + formattedDate);
+				System.out.println("Data: " + datas);
 		
 					
 				//RECUPERA COLEÇÕES
@@ -87,10 +79,10 @@ public class ClimaClient {
 				System.out.println("Mínima: " +minima/18+"°");
 				
 				int maxima = mains.getInt("temp_max");
-				System.out.println("Máxima: " + maxima/10+"°");
+				System.out.println("Máxima: " + maxima/11+"°");
 			
 				int temperatura = mains.getInt("temp");
-				System.out.println("Temperatura : " +temperatura/12+"°");
+				System.out.println("Temperatura : " +temperatura/14+"°");
 				
 				System.out.println("Humidade do Ar: " + mains.getInt("humidity")+"%");
 				int humidade = mains.getInt("temp");

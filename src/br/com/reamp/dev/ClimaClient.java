@@ -53,9 +53,9 @@ public class ClimaClient {
 				int datas = f.getInt("dt");	
 				
 				//FORMATA DATAS
-				Date date = new Date(datas * 1000L);
+				Date dates = new Date(datas * 1000L);
 				SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy"); 
-				String formattedDate = sdf.format(date);
+				String formattedDate = sdf.format(dates);
 				
 				System.out.println("Data: " + formattedDate );
 					

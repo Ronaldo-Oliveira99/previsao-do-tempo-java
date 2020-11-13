@@ -8,12 +8,12 @@ tempo, digite o nome da cidade no qual prefira consultar.
 O programa retorna os segintes dados, como por exemplo:
 
 Data: 2020-11-13 06:00:00
-Tempo: Clouds
-Detalhes: nublado
-icon: 04n
-Mínima: 16°
-Máxima: 26°
-Temperatura : 20°
-Humidade do Ar: 88%
+Tempo: Clouds,
+Detalhes: nublado,
+icon: 04n,
+Mínima: 16°,
+Máxima: 26°,
+Temperatura : 20°,
+Humidade do Ar: 88%,
 
 Para executar, utilize o console da sua IDE preferida. 

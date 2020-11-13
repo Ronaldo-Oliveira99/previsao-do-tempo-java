@@ -1,10 +1,8 @@
 package br.com.reamp.dev;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
-
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 import org.json.JSONArray;
@@ -25,12 +23,12 @@ public class ClimaClient {
 		try {
 			
 		  String URL = "http://api.openweathermap.org/data/2.5/forecast";
-		  String CITY =  cidadeBusca;
+		  String CITY =  cidadeBusca.replace(" ", "%20");
 		  String API_KEY = "c3b26095ada747bb0596244a3d87af89";
 		  ClientConfig config = new DefaultClientConfig();
 		  Client client = Client.create(config);
 		  
-			  WebResource service = client.resource(UriBuilder.fromUri(URL+"?q="+CITY +"&appid=" + API_KEY).build());
+			  WebResource service = client.resource(UriBuilder.fromUri(URL+"?q="+CITY+"&lang=pt_br&appid=" + API_KEY+"&").build());
 			  String services = service.accept(MediaType.APPLICATION_JSON).get(String.class);
 			  JSONObject myResponse = new JSONObject(services);
 			  
@@ -42,11 +40,11 @@ public class ClimaClient {
 			  String country = cityInfo.getString("country");
 			  System.out.println("------------------------------------"); 
 			  System.out.println("Cidade: " +cidade); 
-			  System.out.println("Páis: " +country);
+			  System.out.println("Pais: " +country);
 			  System.out.println("--Previsão para a próximos dias: --");
 			  System.out.println();
 		
-		  
+			 
 		  for (int i=0; i < 8; i++) {
 
 				//RECUPERA PREVISÕES/DIA
@@ -55,7 +53,6 @@ public class ClimaClient {
 				int datas = f.getInt("dt");	
 				
 				//FORMATA DATAS
-			
 				Calendar dt = Calendar.getInstance();
 				dt.setTime( new Date());
 				dt.add(Calendar.DAY_OF_MONTH, i);	
@@ -103,7 +100,8 @@ public class ClimaClient {
 		  }
 		  
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println("Não encontrado, tente novamente!");
+			System.out.println(e.getCause());
 			
 		}
 

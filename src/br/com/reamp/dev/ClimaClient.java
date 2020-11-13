@@ -1,6 +1,8 @@
 package br.com.reamp.dev;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.ws.rs.core.MediaType;
@@ -53,11 +55,17 @@ public class ClimaClient {
 				int datas = f.getInt("dt");	
 				
 				//FORMATA DATAS
-				Date dates = new Date(datas * 1000L);
-				SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy"); 
-				String formattedDate = sdf.format(dates);
+			
+				Calendar dt = Calendar.getInstance();
+				dt.setTime( new Date());
+				dt.add(Calendar.DAY_OF_MONTH, i);	
+				Date data = dt.getTime();
 				
-				System.out.println("Data: " + formattedDate );
+				SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy"); 
+				String formattedDate = sdf.format(data);
+				
+				System.out.println("Data: " + formattedDate);
+		
 					
 				//RECUPERA COLEÇÕES
 				JSONObject mains = f.getJSONObject("main");
